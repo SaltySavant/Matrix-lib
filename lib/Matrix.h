@@ -20,7 +20,7 @@ public:
     explicit matrix(std::vector<std::vector<T>>); ///Constructor to copy from vector///
     //////////////Methods to use//////////////
     void display();                               ///Print matrix to console///
-    void loadMatrix(std::fstream);                ///Reading a matrix from a file///
+    void loadMatrix(const std::string&);                ///Reading a matrix from a file///
     void setMatrix(const std::string& mMatrix);   ///Methods to create a matrix from string///
     bool add(int , int , T);                      ///Add data in a matrix///
     bool change(int , int , T );                  ///Change data in a matrix///
@@ -28,6 +28,7 @@ public:
     const std::pair<size_t,size_t> size() const;  ///Size matrix///
     void resize(int n ,int m);                    ///Resize matrix///
     void resize(const std::pair<size_t,size_t>&); ///Resize matrix with help pair///
+    const std::vector<std::vector<T>> get();      ///Returns the matrix///
     //////////Overloaded Operators//////////
     matrix<T> operator+ (const matrix<T>& other) const ;    ///Matrix addition///
     matrix<T> operator- (const matrix<T>& other) const ;    ///Matrix difference///
@@ -74,6 +75,11 @@ matrix<T>::matrix(int n, int m) {
 }
 
 //////////////Methods to use//////////////
+///Returns the matrix///
+template<typename T>
+const std::vector<std::vector<T>> matrix<T>::get(){
+
+}
 ///Print matrix to console///
 template<typename T>
 void matrix<T>::display() {
@@ -87,7 +93,8 @@ void matrix<T>::display() {
 
 ///Reading a matrix from a file///
 template<typename T>
-void matrix<T>::loadMatrix(std::fstream mMatrix) {
+void matrix<T>::loadMatrix(const std::string& filename) {
+    std::ifstream mMatrix(filename);
     std::string content;
     if (mMatrix.is_open())
     {
@@ -96,14 +103,15 @@ void matrix<T>::loadMatrix(std::fstream mMatrix) {
         {
             content += line + '\n';
         }
-        mMatrix.close();
     }
     else
     {
         std::cerr << "Error opening file" << std::endl;
+        mMatrix.close();
         return;
     }
 
+    mMatrix.close();
     setMatrix(content);
 }
 
@@ -178,7 +186,15 @@ bool matrix<T>::clear() {
 ///Size matrix///
 template<typename T>
 const std::pair<size_t,size_t> matrix<T>::size() const {
-    return std::pair<size_t,size_t>(vmatrix.size(),vmatrix[0].size());
+    std::pair<size_t,size_t> size;
+    size.first = vmatrix.size();
+    if(size.first == 0){
+        size.second = 0;
+    }
+    else {
+        size.second = vmatrix[0].size();
+    }
+    return size;
 }
 
 ///Resize matrix///
