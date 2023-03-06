@@ -2,6 +2,8 @@
 #include <string>
 #include <chrono>
 
+/*          For correct Benchmark values, the 'Release' mode must be enabled!!!         */
+
 int main(){
   std::string str0 = "";
     for(long long int i = 1; i <= 1024*1024; i++){
