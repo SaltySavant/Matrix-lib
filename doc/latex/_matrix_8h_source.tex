@@ -1,0 +1,471 @@
+\hypertarget{_matrix_8h_source}{}\doxysection{Matrix.\+h}
+\label{_matrix_8h_source}\index{C:/Users/vasya/CLionProjects/Matrix/lib/Matrix.h@{C:/Users/vasya/CLionProjects/Matrix/lib/Matrix.h}}
+\mbox{\hyperlink{_matrix_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//Developed\ by\ SaltySavant\ in\ 2023}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <memory\_resource>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmatrix}{matrix}}\{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_arithmetic<T>::value,\ \textcolor{stringliteral}{"{}T\ must\ be\ an\ arithmetic\ type"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ std::vector<T>\ vmatrix;}
+\DoxyCodeLine{00023\ \ \ \ \ std::size\_t\ row;}
+\DoxyCodeLine{00024\ \ \ \ \ std::size\_t\ column;}
+\DoxyCodeLine{00025\ \ \ \ \ std::size\_t\ blockSize\ =\ 1;}
+\DoxyCodeLine{00026\ \ \ \ \ std::size\_t\ threads\ =\ 1;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ setStringToMatrix(\textcolor{keyword}{const}\ std::string\&);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ add(\textcolor{keywordtype}{size\_t}\ index,\textcolor{keyword}{const}\ T\&\ data);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ change(\textcolor{keywordtype}{size\_t}\ index,\textcolor{keyword}{const}\ T\&\ data);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<T>\&\ getMatrix()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ blocked\_column\_multi\_output\_parallel\_mmul(\textcolor{keyword}{const}\ std::vector<T>\&\ B,std::vector<T>\&\ C,\ std::size\_t\ P,std::size\_t\ start\_col,std::size\_t\ end\_col,std::size\_t\ chunkSize)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{/*////////////Constructors-\/Destructor////////////*/}}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classmatrix_abbbac3e6fe81762030787797f4783c57}{matrix}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classmatrix_a2d137302bc26a64b048fba375b313794}{\string~matrix}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classmatrix_abbbac3e6fe81762030787797f4783c57}{matrix}}(\textcolor{keywordtype}{size\_t},\textcolor{keywordtype}{size\_t});}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classmatrix_abbbac3e6fe81762030787797f4783c57}{matrix}}(\textcolor{keyword}{const}\ std::vector<T>\ \&vec,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&row,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&column);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*////////////Methods\ to\ use////////////*/}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_ad24ab81d843c68823de54e089b66ed44}{setNumberOfThreads}}(\textcolor{keyword}{const}\ std::size\_t);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_a73f2692cf590c5d8b80db8523c337b84}{setBlockSize}}(\textcolor{keyword}{const}\ std::size\_t\ );}
+\DoxyCodeLine{00042\ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \mbox{\hyperlink{classmatrix_aba52de8476e0faa105edc856d04f9356}{getNumberOfThreads}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \mbox{\hyperlink{classmatrix_afef2bf74bb680b99e3b8bd92bb6c9375}{getBlockSize}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_ab59a7c4834418d25c5f523bd2ff13a4d}{display}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_af6f0c17efbd09f6c750ed183677af7dd}{loadMatrix}}(\textcolor{keyword}{const}\ std::string\&);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_aeaa6beefea3b13a347f8efc9787c353e}{setMatrix}}\ (\textcolor{keyword}{const}\ std::string\&);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ add(\textcolor{keywordtype}{size\_t}\ ,\textcolor{keywordtype}{size\_t}\ ,\ \textcolor{keyword}{const}\ T\&);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ change(\textcolor{keywordtype}{size\_t}\ ,\ \textcolor{keywordtype}{size\_t}\ ,\ \textcolor{keyword}{const}\ T\&);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmatrix_aa5b6818d3363756ffd8a44c43537f8cd}{clear}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ std::pair<size\_t,size\_t>\ \mbox{\hyperlink{classmatrix_a2d48add91e8057ab2518a42ff73edbc8}{size}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_a9b7c43dacc5b0af85adce2c1af7298dd}{resize}}(\textcolor{keywordtype}{size\_t}\ n\ ,\textcolor{keywordtype}{size\_t}\ m);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_a9b7c43dacc5b0af85adce2c1af7298dd}{resize}}(\textcolor{keyword}{const}\ std::pair<size\_t,size\_t>\&);}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ T\ \mbox{\hyperlink{classmatrix_adf934a81ab971511b8f573adab395589}{getElement}}(\textcolor{keywordtype}{size\_t}\ r\ ,\ \textcolor{keywordtype}{size\_t}\ c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_aa20fbd6643b64e148e69999965e811f4}{setOptimalParams}}();}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*////////////Overloaded\ Operators////////////*/}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \mbox{\hyperlink{classmatrix_a3c5c52efeeca6fee788810b4c1813ec4}{operator+\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\&\ other)\ \textcolor{keyword}{const}\ ;}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \mbox{\hyperlink{classmatrix_ad4cbc410c0632fe30d9739c778a2474f}{operator-\/\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\&\ other)\ \textcolor{keyword}{const}\ ;}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \mbox{\hyperlink{classmatrix_aecab5e4e1ff28c3ce04b8f3612dbc29a}{operator*\ }}(T\ val)\ \textcolor{keyword}{const}\ ;}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \mbox{\hyperlink{classmatrix_aecab5e4e1ff28c3ce04b8f3612dbc29a}{operator*\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ \textcolor{comment}{/*/////////////Implementation/////////////*/}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{//Private}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{const}\ std::size\_t\ \mbox{\hyperlink{classmatrix_aba52de8476e0faa105edc856d04f9356}{matrix<T>::getNumberOfThreads}}()\{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ threads;}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00082\ \textcolor{keyword}{const}\ std::size\_t\ \mbox{\hyperlink{classmatrix_afef2bf74bb680b99e3b8bd92bb6c9375}{matrix<T>::getBlockSize}}()\{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ blockSize;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_aa20fbd6643b64e148e69999965e811f4}{matrix<T>::setOptimalParams}}()\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ std::size\_t\ numCores\ =\ std::thread::hardware\_concurrency();}
+\DoxyCodeLine{00091\ \ \ \ \ std::size\_t\ chunkSize\ =\ sqrt(row\ /\ (2\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t})));}
+\DoxyCodeLine{00092\ \ \ \ \ chunkSize\ =\ std::max(chunkSize,\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00093\ \ \ \ \ chunkSize\ =\ std::min(chunkSize,\ row);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ std::size\_t\ num\_threads\ =\ std::min(numCores,\ row\ /\ chunkSize/\ chunkSize);}
+\DoxyCodeLine{00096\ \ \ \ \ std::max(num\_threads,\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ threads\ =\ num\_threads;}
+\DoxyCodeLine{00099\ \ \ \ \ blockSize\ =\ chunkSize;}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix}{matrix<T>::blocked\_column\_multi\_output\_parallel\_mmul}}(\textcolor{keyword}{const}\ std::vector<T>\&\ B,std::vector<T>\&\ C,\ std::size\_t\ P,std::size\_t\ start\_col,std::size\_t\ end\_col,std::size\_t\ chunkSize)\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ For\ each\ chunk\ of\ columns}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ col\_chunk\ =\ start\_col;\ col\_chunk\ <\ end\_col;\ col\_chunk\ +=\ chunkSize)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ each\ chunk\ of\ rows}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ row\_chunk\ =\ 0;\ row\_chunk\ <\ row;\ row\_chunk\ +=\ chunkSize)}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ each\ block\ of\ elements\ in\ this\ row\ of\ this\ column\ chunk}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solve\ for\ 16\ elements\ at\ a\ time}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ tile\ =\ 0;\ tile\ <\ column;\ tile\ +=\ chunkSize)}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ apply\ that\ tile\ to\ each\ row\ of\ the\ row\ chunk}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ r\ =\ 0;\ r\ <\ chunkSize;\ r++)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ each\ row\ in\ the\ tile}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ tile\_row\ =\ 0;\ tile\_row\ <\ chunkSize;\ tile\_row++)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solve\ for\ each\ element\ in\ this\ tile\ row}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ idx\ =\ 0;\ idx\ <\ chunkSize;\ idx++)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ C[(r\ +\ row\_chunk)\ *\ P\ +\ col\_chunk\ +\ idx]\ +=}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vmatrix[(r\ +\ row\_chunk)\ *\ column\ +\ tile\ +\ tile\_row]\ *}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ B[tile\ *\ P\ +\ tile\_row\ *\ P\ +\ col\_chunk\ +\ idx];}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00138\ \mbox{\hyperlink{classmatrix_abbbac3e6fe81762030787797f4783c57}{matrix<T>::matrix}}(\textcolor{keyword}{const}\ std::vector<T>\ \&vec,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&row,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&column):column(column),row(row)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{if}(row\ <=\ 0\ ||\ column\ <=\ 0)\{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}It\ is\ not\ possible\ to\ create\ a\ matrix\ with\ parameters\ row\ =\ 0\ ,\ column\ =\ 0\ (or\ less)"{}});}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(vec.size()\ !=\ row*column)\{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\ \textcolor{stringliteral}{"{}The\ size\ of\ the\ std::vector<T>\&\ matrix\ must\ be\ equal\ to\ the\ product\ of\ row\ by\ column"{}});}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ vmatrix\ =\ vec;}
+\DoxyCodeLine{00146\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00153\ \textcolor{keyword}{const}\ std::vector<T>\&\ \mbox{\hyperlink{classmatrix}{matrix<T>::getMatrix}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ vmatrix;}
+\DoxyCodeLine{00155\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00162\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix}{matrix<T>::setStringToMatrix}}(\textcolor{keyword}{const}\ std::string\&\ s)\ \{}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ vmatrix.\mbox{\hyperlink{classmatrix_aa5b6818d3363756ffd8a44c43537f8cd}{clear}}();}
+\DoxyCodeLine{00165\ \ \ \ \ vmatrix.shrink\_to\_fit();}
+\DoxyCodeLine{00166\ \ \ \ \ std::istringstream\ is(s);}
+\DoxyCodeLine{00167\ \ \ \ \ T\ num;}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{while}\ (is\ >>\ num)\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ vmatrix.push\_back(num);}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{if}(is.fail())\{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ is.clear();}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}(vmatrix.size()\ <\ row\ *\ column)\{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ vmatrix.resize(row\ *\ column\ ,\ 0);}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00186\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00187\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmatrix}{matrix<T>::add}}(\textcolor{keywordtype}{size\_t}\ index,\textcolor{keyword}{const}\ T\&\ data)\{}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ vmatrix.at(index)\ +=\ data;}
+\DoxyCodeLine{00190\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::out\_of\_range\&\ e)\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Out\ of\ range:\ '"{}}\ <<\ e.what()\ <<\textcolor{stringliteral}{"{}'\ \(\backslash\)nYou\ should\ expand\ the\ size\ of\ the\ matrix\ with\ the\ 'resize'\ function\ and\ try\ adding\ the\ data\ again"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00204\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmatrix}{matrix<T>::change}}(\textcolor{keywordtype}{size\_t}\ index,\textcolor{keyword}{const}\ T\&\ data)\{}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ vmatrix.at(index)\ =\ data;}
+\DoxyCodeLine{00207\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::out\_of\_range\&\ e)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Out\ of\ range:\ '"{}}\ <<\ e.what()\ <<\textcolor{stringliteral}{"{}'\ \(\backslash\)nYou\ should\ expand\ the\ size\ of\ the\ matrix\ with\ the\ 'resize'\ function\ and\ try\ adding\ the\ data\ again"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//Public}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00219\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00220\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_a73f2692cf590c5d8b80db8523c337b84}{matrix<T>::setBlockSize}}(\textcolor{keyword}{const}\ std::size\_t\ blocks)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{if}(blocks\ >\ row\ ||\ blocks\ >\ column)\{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}The\ number\ of\ blocks\ used\ for\ calculation\ can't\ be\ more\ than\ row\ or\ column"{}});}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ blockSize\ =\ blocks;}
+\DoxyCodeLine{00225\ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00232\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_ad24ab81d843c68823de54e089b66ed44}{matrix<T>::setNumberOfThreads}}(\textcolor{keyword}{const}\ std::size\_t\ numThreads)\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{if}(numThreads\ <=\ 0)\{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}The\ number\ of\ threads\ used\ for\ calculation\ can't\ be\ less\ than\ one"{}});}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ threads\ =\ numThreads;}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00246\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00247\ \mbox{\hyperlink{classmatrix_abbbac3e6fe81762030787797f4783c57}{matrix<T>::matrix}}(\textcolor{keywordtype}{size\_t}\ row,\ \textcolor{keywordtype}{size\_t}\ column):row(row),column(column)\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{if}(row\ <=\ 0\ ||\ column\ <=\ 0)\{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}It\ is\ not\ possible\ to\ create\ a\ matrix\ with\ parameters\ row\ =\ 0\ ,\ column\ =\ 0\ (or\ less)"{}});}
+\DoxyCodeLine{00250\ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ vmatrix.resize(row*column);}
+\DoxyCodeLine{00252\ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{comment}{//Methods\ to\ use}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00259\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00260\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_ab59a7c4834418d25c5f523bd2ff13a4d}{matrix<T>::display}}()\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ row;\ ++i)\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ column;\ ++j)\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ vmatrix[i\ *\ column\ +\ j]\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00266\ \ \ \ \ \}}
+\DoxyCodeLine{00267\ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00273\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00274\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_af6f0c17efbd09f6c750ed183677af7dd}{matrix<T>::loadMatrix}}(\textcolor{keyword}{const}\ std::string\&\ filename)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ std::ifstream\ mMatrix(filename);}
+\DoxyCodeLine{00276\ \ \ \ \ std::string\ content;}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{if}\ (mMatrix.is\_open())}
+\DoxyCodeLine{00278\ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(mMatrix,\ line))}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ content\ +=\ line;}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00286\ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ file"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ mMatrix.close();}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ mMatrix.close();}
+\DoxyCodeLine{00293\ \ \ \ \ setStringToMatrix(content);}
+\DoxyCodeLine{00294\ \}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00302\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00303\ \textcolor{keyword}{const}\ T\ \mbox{\hyperlink{classmatrix_adf934a81ab971511b8f573adab395589}{matrix<T>::getElement}}(\textcolor{keywordtype}{size\_t}\ row\ ,\ \textcolor{keywordtype}{size\_t}\ column)\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vmatrix.at(row*column+column);}
+\DoxyCodeLine{00306\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::out\_of\_range\&\ e)\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Out\ of\ range:\ '"{}}\ <<\ e.what()\ <<\textcolor{stringliteral}{"{}'\ \(\backslash\)nYou\ should\ expand\ the\ size\ of\ the\ matrix\ with\ the\ 'resize'\ function\ and\ try\ getting\ the\ data\ again"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00316\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00317\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_aeaa6beefea3b13a347f8efc9787c353e}{matrix<T>::setMatrix}}(\textcolor{keyword}{const}\ std::string\ \&mMatrix)\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ setStringToMatrix(mMatrix);}
+\DoxyCodeLine{00319\ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00328\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00329\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmatrix}{matrix<T>::add}}(\textcolor{keywordtype}{size\_t}\ ro,\ \textcolor{keywordtype}{size\_t}\ col,\ \textcolor{keyword}{const}\ T\&\ data)\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ vmatrix.at(ro*column+col)\ +=\ data;}
+\DoxyCodeLine{00332\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::out\_of\_range\&\ e)\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Out\ of\ range:\ '"{}}\ <<\ e.what()\ <<\textcolor{stringliteral}{"{}'\ \(\backslash\)nYou\ should\ expand\ the\ size\ of\ the\ matrix\ with\ the\ 'resize'\ function\ and\ try\ adding\ the\ data\ again"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00335\ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00337\ \}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00347\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00348\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmatrix}{matrix<T>::change}}(\textcolor{keywordtype}{size\_t}\ ro,\ \textcolor{keywordtype}{size\_t}\ col,\textcolor{keyword}{const}\ T\&\ data)\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ vmatrix.at(ro*column+col)\ =\ data;}
+\DoxyCodeLine{00351\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::out\_of\_range\&\ e)\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Out\ of\ range:\ '"{}}\ <<\ e.what()\ <<\textcolor{stringliteral}{"{}'\ \(\backslash\)nYou\ should\ expand\ the\ size\ of\ the\ matrix\ with\ the\ 'resize'\ function\ and\ try\ adding\ the\ data\ again"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00356\ \}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00363\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00364\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmatrix_aa5b6818d3363756ffd8a44c43537f8cd}{matrix<T>::clear}}()\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ vmatrix.clear();}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keywordflow}{catch}\ (std::exception\&\ e)\ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ clear\ matrix:\ '"{}}\ <<\ e.what()\ <<\ \textcolor{stringliteral}{"{}'"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00371\ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00373\ \}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00379\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00380\ \textcolor{keyword}{const}\ std::pair<size\_t,size\_t>\ \mbox{\hyperlink{classmatrix_a2d48add91e8057ab2518a42ff73edbc8}{matrix<T>::size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<size\_t,size\_t>(row,column);}
+\DoxyCodeLine{00382\ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00389\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00390\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_a9b7c43dacc5b0af85adce2c1af7298dd}{matrix<T>::resize}}(\textcolor{keywordtype}{size\_t}\ ro,\ \textcolor{keywordtype}{size\_t}\ col)\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ row\ =ro;}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ column\ =\ col;}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ vmatrix.resize(ro*col);}
+\DoxyCodeLine{00395\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Resize\ -\/\ an\ error\ occurred:\ "{}}\ <<\ e.what()\ <<\ std::endl;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00398\ \ \ \ \ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00406\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00407\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmatrix_a9b7c43dacc5b0af85adce2c1af7298dd}{matrix<T>::resize}}(\textcolor{keyword}{const}\ std::pair<size\_t,size\_t>\&\ size)\ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ row\ =\ size.first;}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ column\ =\ size.second;}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ vmatrix.resize(row*column);}
+\DoxyCodeLine{00412\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Resize\ -\/\ an\ error\ occurred:\ "{}}\ <<\ e.what()\ <<\ std::endl;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00415\ \ \ \ \ \}}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \textcolor{comment}{//Overloaded\ Operators}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00426\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00427\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \mbox{\hyperlink{classmatrix_a3c5c52efeeca6fee788810b4c1813ec4}{matrix<T>::operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \&other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordflow}{if}(other.row\ !=\ this-\/>row\ ||\ other.column\ !=\ this-\/>column)\{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}In\ order\ to\ add\ or\ subtract\ matrices,\ it\ is\ necessary\ that\ the\ number\ of\ rows\ and\ columns\ coincide\ for\ both\ matrices"{}});}
+\DoxyCodeLine{00430\ \ \ \ \ \}}
+\DoxyCodeLine{00431\ \ \ \ \ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ mxt(row\ ,\ column);}
+\DoxyCodeLine{00432\ \ \ \ \ std::vector<std::thread>\ thrds;}
+\DoxyCodeLine{00433\ \ \ \ \ thrds.reserve(threads);}
+\DoxyCodeLine{00434\ \ \ \ \ std::size\_t\ n\_cols\ =\ row*column\ /\ threads;}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{comment}{//\ Launch\ threads}}
+\DoxyCodeLine{00437\ \ \ \ \ std::size\_t\ start\_col\ =\ 0;}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ threads;\ i++)\ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_col\ =\ (start\_col+n\_cols);}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(threads-\/1\ ==\ i)\{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ remains\ =\ row*column\ \%\ threads;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(remains\ !=\ 0)\{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\_col\ +=\ remains;}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ thrds.emplace\_back([\&,start\_col,end\_col]\ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ start\_col\ ;\ i\ <\ end\_col;i++)\{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mxt.change(i,\ vmatrix[i]\ +\ other.vmatrix[i]);}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ start\_col\ =\ end\_col;}
+\DoxyCodeLine{00454\ \ \ \ \ \}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ all\ threads\ to\ complete}}
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&t\ :\ thrds)\ t.join();}
+\DoxyCodeLine{00458\ \ \ \ \ thrds.clear();}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordflow}{return}\ mxt;}
+\DoxyCodeLine{00460\ \}}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00469\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00470\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \mbox{\hyperlink{classmatrix_ad4cbc410c0632fe30d9739c778a2474f}{matrix<T>::operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \&other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordflow}{if}(other.row\ !=\ row\ ||\ other.column\ !=\ column)\{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}In\ order\ to\ add\ or\ subtract\ matrices,\ it\ is\ necessary\ that\ the\ number\ of\ rows\ and\ columns\ coincide\ for\ both\ matrices"{}});}
+\DoxyCodeLine{00473\ \ \ \ \ \}}
+\DoxyCodeLine{00474\ \ \ \ \ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ mxt(row\ ,\ column);}
+\DoxyCodeLine{00475\ \ \ \ \ std::vector<std::thread>\ thrds;}
+\DoxyCodeLine{00476\ \ \ \ \ thrds.reserve(threads);}
+\DoxyCodeLine{00477\ \ \ \ \ std::size\_t\ n\_cols\ =\ row*column\ /\ threads;}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \textcolor{comment}{//\ Launch\ threads}}
+\DoxyCodeLine{00480\ \ \ \ \ std::size\_t\ start\_col\ =\ 0;}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ threads;\ i++)\ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_col\ =\ (start\_col+n\_cols);}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(threads-\/1\ ==\ i)\{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ remains\ =\ row*column\ \%\ threads;}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(remains\ !=\ 0)\{}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\_col\ +=\ remains;}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ thrds.emplace\_back([\&,start\_col,end\_col]\ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ start\_col\ ;\ i\ <\ end\_col;i++)\{}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mxt.change(i,\ vmatrix[i]\ -\/\ other.vmatrix[i]);}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ start\_col\ =\ end\_col;}
+\DoxyCodeLine{00497\ \ \ \ \ \}}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ all\ threads\ to\ complete}}
+\DoxyCodeLine{00500\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&t\ :\ thrds)\ t.join();}
+\DoxyCodeLine{00501\ \ \ \ \ thrds.clear();}
+\DoxyCodeLine{00502\ \ \ \ \ \textcolor{keywordflow}{return}\ mxt;}
+\DoxyCodeLine{00503\ \}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00511\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00512\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \mbox{\hyperlink{classmatrix_aecab5e4e1ff28c3ce04b8f3612dbc29a}{matrix<T>::operator*}}(T\ val)\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00513\ \ \ \ \ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ mxt(row\ ,\ column);}
+\DoxyCodeLine{00514\ \ \ \ \ std::vector<std::thread>\ thrds;}
+\DoxyCodeLine{00515\ \ \ \ \ thrds.reserve(threads);}
+\DoxyCodeLine{00516\ \ \ \ \ std::size\_t\ n\_cols\ =\ row*column\ /\ threads;}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \ \ \textcolor{comment}{//\ Launch\ threads}}
+\DoxyCodeLine{00519\ \ \ \ \ std::size\_t\ start\_col\ =\ 0;}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ threads;\ i++)\ \{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_col\ =\ (start\_col+n\_cols);}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(threads-\/1\ ==\ i)\{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ remains\ =\ row*column\ \%\ threads;}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(remains\ !=\ 0)\{}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\_col\ +=\ remains;}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ thrds.emplace\_back([\&,start\_col,end\_col]\ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ start\_col\ ;\ i\ <\ end\_col;i++)\{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mxt.change(i,\ vmatrix[i]\ *\ val);}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ start\_col\ =\ end\_col;}
+\DoxyCodeLine{00536\ \ \ \ \ \}}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ all\ threads\ to\ complete}}
+\DoxyCodeLine{00539\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&t\ :\ thrds)\ t.join();}
+\DoxyCodeLine{00540\ \ \ \ \ thrds.clear();}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keywordflow}{return}\ mxt;}
+\DoxyCodeLine{00542\ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00549\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00550\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \mbox{\hyperlink{classmatrix_aecab5e4e1ff28c3ce04b8f3612dbc29a}{matrix<T>::operator*}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ \&other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00551\ \ \ \ \ \textcolor{keywordflow}{if}\ (column\ !=\ other.row)\ \{}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Error:\ Incompatible\ matrix\ sizes\ for\ multiplication."{}});}
+\DoxyCodeLine{00553\ \ \ \ \ \}}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ std::size\_t\ P\ =\ other.column;}
+\DoxyCodeLine{00556\ \ \ \ \ std::vector<T>\ B\ =\ other.vmatrix;}
+\DoxyCodeLine{00557\ \ \ \ \ std::vector<T>\ C(row\ *\ P);}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \ \ \ \ std::vector<std::thread>\ thrds;}
+\DoxyCodeLine{00560\ \ \ \ \ thrds.reserve(threads);}
+\DoxyCodeLine{00561\ \ \ \ \ std::size\_t\ n\_cols\ =\ P\ /\ threads;}
+\DoxyCodeLine{00562\ \ \ \ \ \textcolor{comment}{//\ Launch\ threads}}
+\DoxyCodeLine{00563\ \ \ \ \ std::size\_t\ start\_col\ =\ 0;}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ std::size\_t\ n\_blocks\ =\ P\ /\ blockSize;}
+\DoxyCodeLine{00566\ \ \ \ \ std::size\_t\ remains\ =\ P\ \%\ blockSize;}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keywordflow}{if}\ (remains\ !=\ 0)\ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ remains\ =\ blockSize\ -\/\ remains;}
+\DoxyCodeLine{00569\ \ \ \ \ \}}
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ remains\ =\ blockSize;}
+\DoxyCodeLine{00572\ \ \ \ \ \}}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ threads;\ i++)\ \{}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_col\ =\ (start\_col+n\_cols);}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(threads-\/1\ ==\ i)}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\_col\ =\ P;}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ thrds.emplace\_back([\&,start\_col,end\_col]\ \{}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ blocked\_column\_multi\_output\_parallel\_mmul(B,\ C,\ P,start\_col,end\_col,remains);}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00583\ }
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ start\_col\ =\ end\_col;}
+\DoxyCodeLine{00585\ \ \ \ \ \}}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ all\ threads\ to\ complete}}
+\DoxyCodeLine{00588\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&t\ :\ thrds)\ t.join();}
+\DoxyCodeLine{00589\ \ \ \ \ thrds.clear();}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ \ \ \ \ \mbox{\hyperlink{classmatrix}{matrix<T>}}\ mxt(C,\ row,\ P);}
+\DoxyCodeLine{00592\ \ \ \ \ \textcolor{keywordflow}{return}\ mxt;}
+\DoxyCodeLine{00593\ \}}
+
+\end{DoxyCode}

@@ -66,22 +66,25 @@ public:
 
 //Private
 
-/// Returns the number of threads
-/// \tparam T   - type of template
-/// \return std::size_t
+/** Returns the number of threads
+* \tparam T   - type of template
+* \return std::size_t
+*/
 template<typename T>
 const std::size_t matrix<T>::getNumberOfThreads(){
     return threads;
 }
-/// Returns the value of the block size
-/// \tparam T   - type of template
-/// \return std::size_t
+/** Returns the value of the block size
+* \tparam T   - type of template
+* \return std::size_t
+*/
 template<typename T>
 const std::size_t matrix<T>::getBlockSize(){
     return blockSize;
 }
-///Finds the optimal parameters of chunk and threads , Attention This function is a heuristic, and the optimal parameter values may vary depending on the specific system and matrices!
-/// \tparam T   - type of template
+/**Finds the optimal parameters of chunk and threads , Attention This function is a heuristic, and the optimal parameter values may vary depending on the specific system and matrices!
+* \tparam T   - type of template
+*/
 template<typename T>
 void matrix<T>::setOptimalParams() {
     std::size_t numCores = std::thread::hardware_concurrency();
@@ -95,14 +98,16 @@ void matrix<T>::setOptimalParams() {
     threads = num_threads;
     blockSize = chunkSize;
 }
-///Multiplication of a class matrix by a B matrix with provision of parallelism and caching
-/// \tparam T  - type of template
-/// \param B Matrix B
-/// \param C new Matrix
-/// \param P Column of matrix B
-/// \param start_col The beginning of the column for thread
-/// \param end_col End of the column for the thread
-/// \param chunkSize The size that will divide the matrix into local cached sections
+/**
+* Multiplication of a class matrix by a B matrix with provision of parallelism and caching
+* \tparam T  - type of template
+* \param B Matrix B
+* \param C new Matrix
+* \param P Column of matrix B
+* \param start_col The beginning of the column for thread
+* \param end_col End of the column for the thread
+* \param chunkSize The size that will divide the matrix into local cached sections
+*/
 template<typename T>
 void matrix<T>::blocked_column_multi_output_parallel_mmul(const std::vector<T>& B,std::vector<T>& C, std::size_t P,std::size_t start_col,std::size_t end_col,std::size_t chunkSize) const{
     // For each chunk of columns
@@ -123,11 +128,12 @@ void matrix<T>::blocked_column_multi_output_parallel_mmul(const std::vector<T>& 
                                     B[tile * P + tile_row * P + col_chunk + idx];
 }
 
-/// Constructor
-/// \tparam T type of template
-/// \param vec Matrix in the form of a vector
-/// \param row Number of rows
-/// \param column Number of columns
+/** Constructor
+* \tparam T type of template
+* \param vec Matrix in the form of a vector
+* \param row Number of rows
+* \param column Number of columns
+ */
 template<typename T>
 matrix<T>::matrix(const std::vector<T> &vec, const size_t &row, const size_t &column):column(column),row(row) {
     if(row <= 0 || column <= 0){
@@ -139,17 +145,19 @@ matrix<T>::matrix(const std::vector<T> &vec, const size_t &row, const size_t &co
     vmatrix = vec;
 }
 
-///
-/// \tparam T type of template
-/// \return Returns the matrix as const std::vector<T>&
+/**
+* \tparam T type of template
+* \return Returns the matrix as const std::vector<T>&
+*/
 template<typename T>
 const std::vector<T>& matrix<T>::getMatrix() const{
     return vmatrix;
 }
 
-/// Splits a string into a substring by value
-/// \tparam T type of template
-/// \param s Matrix in the form of a string
+/** Splits a string into a substring by value
+* \tparam T type of template
+* \param s Matrix in the form of a string
+*/
 template <typename T>
 void matrix<T>::setStringToMatrix(const std::string& s) {
 
@@ -169,11 +177,12 @@ void matrix<T>::setStringToMatrix(const std::string& s) {
     }
 }
 
-/// Add value in a matrix
-/// \tparam T type of template
-/// \param index The number of the cell to which the values are added
-/// \param data Added data of type T
-/// \return Returns the result of adding(bool) successfully(true), unsuccessfully(false)
+/** Add value in a matrix
+* \tparam T type of template
+* \param index The number of the cell to which the values are added
+* \param data Added data of type T
+* \return Returns the result of adding(bool) successfully(true), unsuccessfully(false)
+ */
 template <typename T>
 bool matrix<T>::add(size_t index,const T& data){
     try {
@@ -185,11 +194,12 @@ bool matrix<T>::add(size_t index,const T& data){
     return true;
 }
 
-///Change value in a matrix
-/// \tparam T type of template
-/// \param index The number of the cell to which the values are added
-/// \param data Changed data of type T
-/// \return Returns the result of adding(bool) successfully(true), unsuccessfully(false)
+/**Change value in a matrix
+* \tparam T type of template
+* \param index The number of the cell to which the values are added
+* \param data Changed data of type T
+* \return Returns the result of adding(bool) successfully(true), unsuccessfully(false)
+ */
 template <typename T>
 bool matrix<T>::change(size_t index,const T& data){
     try {
@@ -202,9 +212,10 @@ bool matrix<T>::change(size_t index,const T& data){
 }
 //Public
 
-/// Changes the number of blocks for calculations (multiplication)
-/// \tparam T type of template
-/// \param blocks Number of blocks
+/** Changes the number of blocks for calculations (multiplication)
+* \tparam T type of template
+* \param blocks Number of blocks
+*/
 template<typename T>
 void matrix<T>::setBlockSize(const std::size_t blocks) {
     if(blocks > row || blocks > column){
@@ -213,9 +224,10 @@ void matrix<T>::setBlockSize(const std::size_t blocks) {
     blockSize = blocks;
 }
 
-/// Changes the number of threads for calculations
-/// \tparam T type of template
-/// \param numThreads The number of threads to calculate multiplication , addition, difference, etc
+/** Changes the number of threads for calculations
+* \tparam T type of template
+* \param numThreads The number of threads to calculate multiplication , addition, difference, etc
+*/
 template<typename T>
 void matrix<T>::setNumberOfThreads(const std::size_t numThreads) {
     if(numThreads <= 0){
@@ -226,10 +238,11 @@ void matrix<T>::setNumberOfThreads(const std::size_t numThreads) {
     }
 }
 
-/// Constructor to create an empty matrix
-/// \tparam T type of template
-/// \param row Number of rows in the matrix
-/// \param column Number of columns in the matrix
+/** Constructor to create an empty matrix
+* \tparam T type of template
+*\param row Number of rows in the matrix
+* \param column Number of columns in the matrix
+*/
 template<typename T>
 matrix<T>::matrix(size_t row, size_t column):row(row),column(column) {
     if(row <= 0 || column <= 0){
@@ -240,8 +253,9 @@ matrix<T>::matrix(size_t row, size_t column):row(row),column(column) {
 
 //Methods to use
 
-/// Print matrix to console
-/// \tparam T type of template
+/** Print matrix to console
+* \tparam T type of template
+*/
 template<typename T>
 void matrix<T>::display() {
     for (int i = 0; i < row; ++i) {
@@ -252,9 +266,10 @@ void matrix<T>::display() {
     }
 }
 
-/// Reading a matrix from a file
-/// \tparam T type of template
-/// \param filename The file name for reading the matrix from the file
+/** Reading a matrix from a file
+* \tparam T type of template
+* \param filename The file name for reading the matrix from the file
+*/
 template<typename T>
 void matrix<T>::loadMatrix(const std::string& filename) {
     std::ifstream mMatrix(filename);
@@ -278,11 +293,12 @@ void matrix<T>::loadMatrix(const std::string& filename) {
     setStringToMatrix(content);
 }
 
-/// Get the matrix value in a cell
-/// \tparam T type of template
-/// \param row Row number
-/// \param column Column number
-/// \return Values of type T from the matrix
+/** Get the matrix value in a cell
+* \tparam T type of template
+* \param row Row number
+* \param column Column number
+* \return Values of type T from the matrix
+*/
 template<typename T>
 const T matrix<T>::getElement(size_t row , size_t column) const{
     try {
@@ -293,20 +309,22 @@ const T matrix<T>::getElement(size_t row , size_t column) const{
     }
 }
 
-/// Сreate a vector from string
-/// \tparam T type of template
-/// \param mMatrix Matrix in the form of a string
+/** Сreate a vector from string
+* \tparam T type of template
+* \param mMatrix Matrix in the form of a string
+*/
 template<typename T>
 void matrix<T>::setMatrix(const std::string &mMatrix) {
     setStringToMatrix(mMatrix);
 }
 
-/// Add data in a matrix
-/// \tparam T type of template
-/// \param ro Row number
-/// \param col Column number
-/// \param data  Added data of type T
-/// \return  Returns the result of adding(bool) successfully(true), unsuccessfully(false)
+/** Add data in a matrix
+* \tparam T type of template
+* \param ro Row number
+* \param col Column number
+* \param data  Added data of type T
+* \return  Returns the result of adding(bool) successfully(true), unsuccessfully(false)
+*/
 template<typename T>
 bool matrix<T>::add(size_t ro, size_t col, const T& data) {
     try {
@@ -319,12 +337,13 @@ bool matrix<T>::add(size_t ro, size_t col, const T& data) {
 }
 
 
-/// Change data in a matrix
-/// \tparam T type of template
-/// \param ro Row number
-/// \param col Column number
-/// \param data Changed data of type T
-/// \return  Returns the result of adding(bool) successfully(true), unsuccessfully(false)
+/** Change data in a matrix
+* \tparam T type of template
+* \param ro Row number
+* \param col Column number
+* \param data Changed data of type T
+* \return  Returns the result of adding(bool) successfully(true), unsuccessfully(false)
+*/
 template<typename T>
 bool matrix<T>::change(size_t ro, size_t col,const T& data) {
     try {
@@ -337,9 +356,10 @@ bool matrix<T>::change(size_t ro, size_t col,const T& data) {
 }
 
 
-/// Clear data and size a matrix
-/// \tparam T type of template
-/// \return Returns the result of cleaning(bool) successfully(true), unsuccessfully(false)
+/** Clear data and size a matrix
+* \tparam T type of template
+* \return Returns the result of cleaning(bool) successfully(true), unsuccessfully(false)
+*/
 template<typename T>
 bool matrix<T>::clear() {
     try{
@@ -352,18 +372,20 @@ bool matrix<T>::clear() {
     return true;
 }
 
-/// Size matrix
-/// \tparam T type of template
-/// \return Returns the size of the matrix first(rows),second(column)
+/** Size matrix
+* \tparam T type of template
+* \return Returns the size of the matrix first(rows),second(column)
+*/
 template<typename T>
 const std::pair<size_t,size_t> matrix<T>::size() const {
     return std::pair<size_t,size_t>(row,column);
 }
 
-/// Resize matrix
-/// \tparam T type of template
-/// \param ro  Row number
-/// \param col
+/** Resize matrix
+* \tparam T type of template
+* \param ro  Row number
+* \param col
+*/
 template<typename T>
 void matrix<T>::resize(size_t ro, size_t col) {
     try {
@@ -377,9 +399,10 @@ void matrix<T>::resize(size_t ro, size_t col) {
 
 }
 
-///Resize matrix with help pair
-/// \tparam T type of template
-/// \param size  Row*Column matrix size value
+/**Resize matrix with help pair
+* \tparam T type of template
+* \param size  Row*Column matrix size value
+*/
 template<typename T>
 void matrix<T>::resize(const std::pair<size_t,size_t>& size) {
     try {
@@ -395,10 +418,11 @@ void matrix<T>::resize(const std::pair<size_t,size_t>& size) {
 
 //Overloaded Operators
 
-/// Matrix addition
-/// \tparam T type of template
-/// \param other The matrix that we add up from the original
-/// \return Returns a new matrix (the result of addition)
+/** Matrix addition
+* \tparam T type of template
+* \param other The matrix that we add up from the original
+* \return Returns a new matrix (the result of addition)
+*/
 template<typename T>
 matrix<T> matrix<T>::operator+(const matrix<T> &other) const {
     if(other.row != this->row || other.column != this->column){
@@ -437,10 +461,11 @@ matrix<T> matrix<T>::operator+(const matrix<T> &other) const {
 
 
 
-/// Matrix difference
-/// \tparam T type of template
-/// \param other The matrix that we subtract from the original
-/// \return Returns a new matrix (the result of the difference)
+/** Matrix difference
+* \tparam T type of template
+* \param other The matrix that we subtract from the original
+* \return Returns a new matrix (the result of the difference)
+*/
 template<typename T>
 matrix<T> matrix<T>::operator-(const matrix<T> &other) const {
     if(other.row != row || other.column != column){
@@ -478,10 +503,11 @@ matrix<T> matrix<T>::operator-(const matrix<T> &other) const {
 }
 
 
-/// Multiplication matrix by num
-/// \tparam T type of template
-/// \param val The value by which the matrix will be multiplied
-/// \return Returns a new matrix (the result of multiplication)
+/** Multiplication matrix by num
+* \tparam T type of template
+* \param val The value by which the matrix will be multiplied
+* \return Returns a new matrix (the result of multiplication)
+*/
 template<typename T>
 matrix<T> matrix<T>::operator*(T val) const{
     matrix<T> mxt(row , column);
@@ -515,10 +541,11 @@ matrix<T> matrix<T>::operator*(T val) const{
     return mxt;
 }
 
-/// Matrix multiplication
-/// \tparam T type of template
-/// \param other The matrix that we multiply by the original
-/// \return Returns a new matrix (the result of multiplication)
+/** Matrix multiplication
+* \tparam T type of template
+* \param other The matrix that we multiply by the original
+* \return Returns a new matrix (the result of multiplication)
+*/
 template<typename T>
 matrix<T> matrix<T>::operator*(const matrix<T> &other) const {
     if (column != other.row) {

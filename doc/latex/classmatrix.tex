@@ -1,0 +1,458 @@
+\hypertarget{classmatrix}{}\doxysection{matrix\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classmatrix}\index{matrix$<$ T $>$@{matrix$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Matrix.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmatrix_abbbac3e6fe81762030787797f4783c57}{matrix}} ()=default
+\item 
+\mbox{\hyperlink{classmatrix_a2d137302bc26a64b048fba375b313794}{$\sim$matrix}} ()=default
+\item 
+\mbox{\hyperlink{classmatrix_a98701f71f3c7f5282530cb653bcd4b2a}{matrix}} (size\+\_\+t, size\+\_\+t)
+\item 
+\mbox{\hyperlink{classmatrix_a9758be93b9968486a00cb3d79f49ef08}{matrix}} (const std\+::vector$<$ T $>$ \&vec, const size\+\_\+t \&row, const size\+\_\+t \&column)
+\item 
+void \mbox{\hyperlink{classmatrix_ad24ab81d843c68823de54e089b66ed44}{set\+Number\+Of\+Threads}} (const std\+::size\+\_\+t)
+\item 
+void \mbox{\hyperlink{classmatrix_a73f2692cf590c5d8b80db8523c337b84}{set\+Block\+Size}} (const std\+::size\+\_\+t)
+\item 
+const std\+::size\+\_\+t \mbox{\hyperlink{classmatrix_aba52de8476e0faa105edc856d04f9356}{get\+Number\+Of\+Threads}} ()
+\item 
+const std\+::size\+\_\+t \mbox{\hyperlink{classmatrix_afef2bf74bb680b99e3b8bd92bb6c9375}{get\+Block\+Size}} ()
+\item 
+void \mbox{\hyperlink{classmatrix_ab59a7c4834418d25c5f523bd2ff13a4d}{display}} ()
+\item 
+void \mbox{\hyperlink{classmatrix_af6f0c17efbd09f6c750ed183677af7dd}{load\+Matrix}} (const std\+::string \&)
+\item 
+void \mbox{\hyperlink{classmatrix_aeaa6beefea3b13a347f8efc9787c353e}{set\+Matrix}} (const std\+::string \&)
+\item 
+bool \mbox{\hyperlink{classmatrix_ab7dba665422f6b26b6a46e3d2c56691c}{add}} (size\+\_\+t, size\+\_\+t, const T \&)
+\item 
+bool \mbox{\hyperlink{classmatrix_a069adf0fab14ceecb83706d6fc805a51}{change}} (size\+\_\+t, size\+\_\+t, const T \&)
+\item 
+bool \mbox{\hyperlink{classmatrix_aa5b6818d3363756ffd8a44c43537f8cd}{clear}} ()
+\item 
+const std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \mbox{\hyperlink{classmatrix_a2d48add91e8057ab2518a42ff73edbc8}{size}} () const
+\item 
+void \mbox{\hyperlink{classmatrix_a9b7c43dacc5b0af85adce2c1af7298dd}{resize}} (size\+\_\+t n, size\+\_\+t m)
+\item 
+void \mbox{\hyperlink{classmatrix_a66d3e9e2b712372a203300f381411017}{resize}} (const std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \&)
+\item 
+const T \mbox{\hyperlink{classmatrix_adf934a81ab971511b8f573adab395589}{get\+Element}} (size\+\_\+t r, size\+\_\+t c) const
+\item 
+void \mbox{\hyperlink{classmatrix_aa20fbd6643b64e148e69999965e811f4}{set\+Optimal\+Params}} ()
+\item 
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \mbox{\hyperlink{classmatrix_a3c5c52efeeca6fee788810b4c1813ec4}{operator+}} (const \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \&other) const
+\item 
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \mbox{\hyperlink{classmatrix_ad4cbc410c0632fe30d9739c778a2474f}{operator-\/}} (const \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \&other) const
+\item 
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \mbox{\hyperlink{classmatrix_aecab5e4e1ff28c3ce04b8f3612dbc29a}{operator$\ast$}} (T val) const
+\item 
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \mbox{\hyperlink{classmatrix_a47c492aba4e30de5444ecf100c5463e1}{operator$\ast$}} (const \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \&other) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmatrix_abbbac3e6fe81762030787797f4783c57}\label{classmatrix_abbbac3e6fe81762030787797f4783c57}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\mbox{\hyperlink{classmatrix}{\+::matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classmatrix_a2d137302bc26a64b048fba375b313794}\label{classmatrix_a2d137302bc26a64b048fba375b313794}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!````~matrix@{$\sim$matrix}}
+\index{````~matrix@{$\sim$matrix}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$matrix()}{~matrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::$\sim$\mbox{\hyperlink{classmatrix}{matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classmatrix_a98701f71f3c7f5282530cb653bcd4b2a}\label{classmatrix_a98701f71f3c7f5282530cb653bcd4b2a}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\mbox{\hyperlink{classmatrix}{\+::matrix}} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{row,  }\item[{size\+\_\+t}]{column }\end{DoxyParamCaption})}
+
+Constructor to create an empty matrix 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Number of rows in the matrix \\
+\hline
+{\em column} & Number of columns in the matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmatrix_a9758be93b9968486a00cb3d79f49ef08}\label{classmatrix_a9758be93b9968486a00cb3d79f49ef08}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\mbox{\hyperlink{classmatrix}{\+::matrix}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vec,  }\item[{const size\+\_\+t \&}]{row,  }\item[{const size\+\_\+t \&}]{column }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Matrix in the form of a vector \\
+\hline
+{\em row} & Number of rows \\
+\hline
+{\em column} & Number of columns \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmatrix_ab7dba665422f6b26b6a46e3d2c56691c}\label{classmatrix_ab7dba665422f6b26b6a46e3d2c56691c}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!add@{add}}
+\index{add@{add}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{ro,  }\item[{size\+\_\+t}]{col,  }\item[{const T \&}]{data }\end{DoxyParamCaption})}
+
+Add data in a matrix 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em ro} & Row number \\
+\hline
+{\em col} & Column number \\
+\hline
+{\em data} & Added data of type T \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the result of adding(bool) successfully(true), unsuccessfully(false) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_a069adf0fab14ceecb83706d6fc805a51}\label{classmatrix_a069adf0fab14ceecb83706d6fc805a51}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!change@{change}}
+\index{change@{change}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{change()}{change()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::change (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{ro,  }\item[{size\+\_\+t}]{col,  }\item[{const T \&}]{data }\end{DoxyParamCaption})}
+
+Change data in a matrix 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em ro} & Row number \\
+\hline
+{\em col} & Column number \\
+\hline
+{\em data} & Changed data of type T \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the result of adding(bool) successfully(true), unsuccessfully(false) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_aa5b6818d3363756ffd8a44c43537f8cd}\label{classmatrix_aa5b6818d3363756ffd8a44c43537f8cd}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!clear@{clear}}
+\index{clear@{clear}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::clear}
+
+Clear data and size a matrix 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+Returns the result of cleaning(bool) successfully(true), unsuccessfully(false) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_ab59a7c4834418d25c5f523bd2ff13a4d}\label{classmatrix_ab59a7c4834418d25c5f523bd2ff13a4d}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!display@{display}}
+\index{display@{display}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::display}
+
+Print matrix to console 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classmatrix_afef2bf74bb680b99e3b8bd92bb6c9375}\label{classmatrix_afef2bf74bb680b99e3b8bd92bb6c9375}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!getBlockSize@{getBlockSize}}
+\index{getBlockSize@{getBlockSize}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getBlockSize()}{getBlockSize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const std\+::size\+\_\+t \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::get\+Block\+Size}
+
+Returns the value of the block size 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & -\/ type of template \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+std\+::size\+\_\+t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_adf934a81ab971511b8f573adab395589}\label{classmatrix_adf934a81ab971511b8f573adab395589}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!getElement@{getElement}}
+\index{getElement@{getElement}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getElement()}{getElement()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::get\+Element (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{row,  }\item[{size\+\_\+t}]{column }\end{DoxyParamCaption}) const}
+
+Get the matrix value in a cell 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row number \\
+\hline
+{\em column} & Column number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Values of type T from the matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_aba52de8476e0faa105edc856d04f9356}\label{classmatrix_aba52de8476e0faa105edc856d04f9356}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!getNumberOfThreads@{getNumberOfThreads}}
+\index{getNumberOfThreads@{getNumberOfThreads}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getNumberOfThreads()}{getNumberOfThreads()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const std\+::size\+\_\+t \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::get\+Number\+Of\+Threads}
+
+Returns the number of threads 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & -\/ type of template \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+std\+::size\+\_\+t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_af6f0c17efbd09f6c750ed183677af7dd}\label{classmatrix_af6f0c17efbd09f6c750ed183677af7dd}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!loadMatrix@{loadMatrix}}
+\index{loadMatrix@{loadMatrix}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{loadMatrix()}{loadMatrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::load\+Matrix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+Reading a matrix from a file 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The file name for reading the matrix from the file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmatrix_a47c492aba4e30de5444ecf100c5463e1}\label{classmatrix_a47c492aba4e30de5444ecf100c5463e1}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const}
+
+Matrix multiplication 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix that we multiply by the original \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a new matrix (the result of multiplication) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_aecab5e4e1ff28c3ce04b8f3612dbc29a}\label{classmatrix_aecab5e4e1ff28c3ce04b8f3612dbc29a}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{T}]{val }\end{DoxyParamCaption}) const}
+
+Multiplication matrix by num 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The value by which the matrix will be multiplied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a new matrix (the result of multiplication) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_a3c5c52efeeca6fee788810b4c1813ec4}\label{classmatrix_a3c5c52efeeca6fee788810b4c1813ec4}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const}
+
+Matrix addition 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix that we add up from the original \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a new matrix (the result of addition) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_ad4cbc410c0632fe30d9739c778a2474f}\label{classmatrix_ad4cbc410c0632fe30d9739c778a2474f}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const}
+
+Matrix difference 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix that we subtract from the original \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a new matrix (the result of the difference) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmatrix_a66d3e9e2b712372a203300f381411017}\label{classmatrix_a66d3e9e2b712372a203300f381411017}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!resize@{resize}}
+\index{resize@{resize}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::resize (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \&}]{size }\end{DoxyParamCaption})}
+
+Resize matrix with help pair 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Row$\ast$\+Column matrix size value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmatrix_a9b7c43dacc5b0af85adce2c1af7298dd}\label{classmatrix_a9b7c43dacc5b0af85adce2c1af7298dd}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!resize@{resize}}
+\index{resize@{resize}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::resize (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{ro,  }\item[{size\+\_\+t}]{col }\end{DoxyParamCaption})}
+
+Resize matrix 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em ro} & Row number \\
+\hline
+{\em col} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmatrix_a73f2692cf590c5d8b80db8523c337b84}\label{classmatrix_a73f2692cf590c5d8b80db8523c337b84}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!setBlockSize@{setBlockSize}}
+\index{setBlockSize@{setBlockSize}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setBlockSize()}{setBlockSize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::set\+Block\+Size (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{blocks }\end{DoxyParamCaption})}
+
+Changes the number of blocks for calculations (multiplication) 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em blocks} & Number of blocks \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmatrix_aeaa6beefea3b13a347f8efc9787c353e}\label{classmatrix_aeaa6beefea3b13a347f8efc9787c353e}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!setMatrix@{setMatrix}}
+\index{setMatrix@{setMatrix}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setMatrix()}{setMatrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::set\+Matrix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{m\+Matrix }\end{DoxyParamCaption})}
+
+Сreate a vector from string 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em m\+Matrix} & Matrix in the form of a string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmatrix_ad24ab81d843c68823de54e089b66ed44}\label{classmatrix_ad24ab81d843c68823de54e089b66ed44}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!setNumberOfThreads@{setNumberOfThreads}}
+\index{setNumberOfThreads@{setNumberOfThreads}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setNumberOfThreads()}{setNumberOfThreads()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::set\+Number\+Of\+Threads (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{num\+Threads }\end{DoxyParamCaption})}
+
+Changes the number of threads for calculations 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Threads} & The number of threads to calculate multiplication , addition, difference, etc \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmatrix_aa20fbd6643b64e148e69999965e811f4}\label{classmatrix_aa20fbd6643b64e148e69999965e811f4}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!setOptimalParams@{setOptimalParams}}
+\index{setOptimalParams@{setOptimalParams}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setOptimalParams()}{setOptimalParams()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::set\+Optimal\+Params}
+
+Finds the optimal parameters of chunk and threads , Attention This function is a heuristic, and the optimal parameter values may vary depending on the specific system and matrices! 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & -\/ type of template \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classmatrix_a2d48add91e8057ab2518a42ff73edbc8}\label{classmatrix_a2d48add91e8057ab2518a42ff73edbc8}} 
+\index{matrix$<$ T $>$@{matrix$<$ T $>$}!size@{size}}
+\index{size@{size}!matrix$<$ T $>$@{matrix$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \mbox{\hyperlink{classmatrix}{matrix}}$<$ T $>$\+::size}
+
+Size matrix 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & type of template \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+Returns the size of the matrix first(rows),second(column) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/vasya/\+CLion\+Projects/\+Matrix/lib/\mbox{\hyperlink{_matrix_8h}{Matrix.\+h}}\end{DoxyCompactItemize}
