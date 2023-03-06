@@ -1,9 +1,9 @@
 # Matrix C++ library 
-[![Language](https://img.shields.io/badge/language-С++-blue.svg)](https://isocpp.org/) [![Standard](https://img.shields.io/badge/c%2B%2B-17-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization)
+[![Language](https://img.shields.io/badge/language-С++-blue.svg)](https://isocpp.org/) [![Standard](https://img.shields.io/badge/c%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization)
 ## Requirements
 No special requirement. You should already have this :
 
-+ C++17 compatible compiler.
++ C++20 compatible compiler.
 
 ## Installation
 
@@ -24,23 +24,25 @@ the matrix class is based on std::vector
 + Initialization of the matrix based on std::vector
 ```cpp
     std::vector<std::vector<int>> vec;
+    std::size_t row;
+    std::size_t column;
     /*
-      Initializing a vec
+      Initializing a vec & row & column
     */
-    matrix<int> mtx(myMatrix);
+    matrix<int> mtx(myMatrix,row,column);
 ```
 + Initializing a matrix based on std::string
 
-  It is important to put a space (' ') between the elements of the rows and '\n' between the columns in the variable std::string
+  It is important to put a space (' ') between the string elements in the variable std::string
 ```cpp
-    std::string str = "2 -1 1\n"
-                      "-5 0 2\n";
-    matrix<int> mxt;
+    std::string str = "2 -1 1"
+                      "-5 0 2";
+    matrix<int> mxt(2,3);
     mxt.setMatrix(str);
 ```
 + Load a matrix from a file
 
-  It is important to put a space (' ') between the row elements and '\n' between the columns in the file
+  It is important to put a space (' ') between the elements of the string
 ```cpp
     std::string filename = "matrix.txt"
     matrix<int> mxt;
@@ -52,28 +54,30 @@ the matrix class is based on std::vector
 1. Arithmetic operations on matrices, namely '+' , '-' , '*'
 
 ## Example
+__Attention the 'setOptimalParams()' function is heuristic, and the optimal parameter values may vary depending on the specific system and matrices!!!__
 + The example demonstrates basic arithmetic operations such as '+' , '-' , '*'
 ```cpp
 #include "lib/Matrix.h"
 #include <string>
 
 int main(){
-    std::string str0 = "2 -1\n"
-                      "-5 0\n";
+    std::string str0 = "2 -1 -5 0";
 
-    std::string str1 = "-4 -3\n"
-                       "3 -1\n";
+    std::string str1 = "-4 -3 3 -1";
 
-    std::string str2 = "-7 -1\n"
-                       "0 8\n";
+    std::string str2 = "-7 -1 0 8\n";
 
-    matrix<int> mxt0;
-    matrix<int> mxt1;
-    matrix<int> mxt2;
+    matrix<int> mxt0(2,2);
+    matrix<int> mxt1(2,2);
+    matrix<int> mxt2(2,2);
 
     mxt0.setMatrix(str0);
     mxt1.setMatrix(str1);
     mxt2.setMatrix(str2);
+    
+    mxt0.setOptimalParams();
+    mxt1.setOptimalParams();
+    mxt2.setOptimalParams();
 
     auto newMtx = (mxt2 + mxt0 - mxt1) * mxt1;
     newMtx.display();

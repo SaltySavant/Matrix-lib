@@ -532,7 +532,6 @@ matrix<T> matrix<T>::operator*(const matrix<T> &other) const {
     std::vector<std::thread> thrds;
     thrds.reserve(threads);
     std::size_t n_cols = P / threads;
-    std::cout << n_cols << std::endl;
     // Launch threads
     std::size_t start_col = 0;
 
