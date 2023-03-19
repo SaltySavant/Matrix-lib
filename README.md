@@ -80,6 +80,5 @@ int main(){
     mxt2.setOptimalParams();
 
     auto newMtx = (mxt2 + mxt0 - mxt1) * mxt1;
-    newMtx.display();
 }
 ```

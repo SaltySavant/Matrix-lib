@@ -29,7 +29,6 @@ private:
     bool change(size_t index,const T& data);
     const std::vector<T>& getMatrix() const;
     void blocked_column_multi_output_parallel_mmul(const std::vector<T>& B,std::vector<T>& C, std::size_t P,std::size_t start_col,std::size_t end_col,std::size_t chunkSize) const;
-
 public:
     /*////////////Constructors-Destructor////////////*/
     matrix() = default;
@@ -41,7 +40,6 @@ public:
     void setBlockSize(const std::size_t );
    const std::size_t getNumberOfThreads();
     const std::size_t getBlockSize();
-    void display();
     void loadMatrix(const std::string&);
     void setMatrix (const std::string&);
     bool add(size_t ,size_t , const T&);
@@ -52,6 +50,8 @@ public:
     void resize(const std::pair<size_t,size_t>&);
     const T getElement(size_t r , size_t c) const;
     void setOptimalParams();
+    void transpose();
+    T determinant(bool type) ;
     /*////////////Overloaded Operators////////////*/
     matrix<T> operator+ (const matrix<T>& other) const ;
     matrix<T> operator- (const matrix<T>& other) const ;
@@ -63,9 +63,7 @@ public:
 #include <sstream>
 #include <stdexcept>
 #include <math.h>
-
 //Private
-
 /** Returns the number of threads
 * \tparam T   - type of template
 * \return std::size_t
@@ -252,20 +250,6 @@ matrix<T>::matrix(size_t row, size_t column):row(row),column(column) {
 }
 
 //Methods to use
-
-/** Print matrix to console
-* \tparam T type of template
-*/
-template<typename T>
-void matrix<T>::display() {
-    for (int i = 0; i < row; ++i) {
-        for (int j = 0; j < column; ++j) {
-            std::cout << vmatrix[i * column + j] << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-
 /** Reading a matrix from a file
 * \tparam T type of template
 * \param filename The file name for reading the matrix from the file
@@ -295,14 +279,14 @@ void matrix<T>::loadMatrix(const std::string& filename) {
 
 /** Get the matrix value in a cell
 * \tparam T type of template
-* \param row Row number
-* \param column Column number
+* \param rows Row number
+* \param columns Column number
 * \return Values of type T from the matrix
 */
 template<typename T>
-const T matrix<T>::getElement(size_t row , size_t column) const{
+const T matrix<T>::getElement(size_t rows , size_t columns) const{
     try {
-        return vmatrix.at(row*column+column);
+        return vmatrix.at(rows*column+columns);
     } catch (const std::out_of_range& e) {
         std::cout << "Out of range: '" << e.what() <<"' \nYou should expand the size of the matrix with the 'resize' function and try getting the data again" << std::endl;
         return false;
@@ -590,4 +574,51 @@ matrix<T> matrix<T>::operator*(const matrix<T> &other) const {
 
     matrix<T> mxt(C, row, P);
     return mxt;
+}
+
+/** Matrix transportation
+ * @tparam T type of template
+ */
+template<typename T>
+void matrix<T>::transpose() {
+    std::vector<std::thread> thrds;
+    std::vector<T> transposed(column * row);
+    thrds.reserve(threads);
+    std::size_t n_cols = row / threads;
+    // Launch threads
+    std::size_t start_col = 0;
+
+    for (std::size_t i = 0; i < threads; i++) {
+        auto end_col = (start_col + n_cols);
+        if(threads-1 == i) {end_col = row;}
+        thrds.emplace_back([&,start_col,end_col] {
+            for (size_t i = start_col; i < end_col; ++i)
+            {
+                for (size_t j = 0; j < column; ++j)
+                {
+                    transposed[j * row + i] = vmatrix[i * column + j];
+                }
+            }
+        });
+        start_col = end_col;
+    }
+
+    for (auto &t : thrds) t.join();
+    thrds.clear();
+
+    vmatrix = transposed;
+
+    row ^= column;
+    column ^= row;
+    row^= column;
+}
+
+template<typename T>
+T matrix<T>::determinant(bool type) {
+    if(row == column  && type == false){throw "Error:The matrix must be square";}
+    else if(row <= 0 || column <= 0){throw "Error:The size of the matrix can't be zero";}
+
+    
+
+    return 0;
 }
